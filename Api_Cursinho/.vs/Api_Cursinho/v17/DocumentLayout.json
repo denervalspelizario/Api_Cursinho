@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\repositorio\\Api_Cursinho\\Api_Cursinho\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F40FBCD2-D008-406E-A517-DA34AAA41734}|Api_Cursinho\\Api_Cursinho.csproj|d:\\repositorio\\api_cursinho\\api_cursinho\\api_cursinho\\model\\administradores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F40FBCD2-D008-406E-A517-DA34AAA41734}|Api_Cursinho\\Api_Cursinho.csproj|solutionrelative:api_cursinho\\model\\administradores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F40FBCD2-D008-406E-A517-DA34AAA41734}|Api_Cursinho\\Api_Cursinho.csproj|d:\\repositorio\\api_cursinho\\api_cursinho\\api_cursinho\\documentacao\\documentacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F40FBCD2-D008-406E-A517-DA34AAA41734}|Api_Cursinho\\Api_Cursinho.csproj|solutionrelative:api_cursinho\\documentacao\\documentacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Administradores.cs",
+              "DocumentMoniker": "D:\\repositorio\\Api_Cursinho\\Api_Cursinho\\Api_Cursinho\\Model\\Administradores.cs",
+              "RelativeDocumentMoniker": "Api_Cursinho\\Model\\Administradores.cs",
+              "ToolTip": "D:\\repositorio\\Api_Cursinho\\Api_Cursinho\\Api_Cursinho\\Model\\Administradores.cs",
+              "RelativeToolTip": "Api_Cursinho\\Model\\Administradores.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T22:54:37.763Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Documentacao.cs",
+              "DocumentMoniker": "D:\\repositorio\\Api_Cursinho\\Api_Cursinho\\Api_Cursinho\\Documentacao\\Documentacao.cs",
+              "RelativeDocumentMoniker": "Api_Cursinho\\Documentacao\\Documentacao.cs",
+              "ToolTip": "D:\\repositorio\\Api_Cursinho\\Api_Cursinho\\Api_Cursinho\\Documentacao\\Documentacao.cs",
+              "RelativeToolTip": "Api_Cursinho\\Documentacao\\Documentacao.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T21:43:52.943Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
