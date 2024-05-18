@@ -1,6 +1,9 @@
 ﻿using Cursinho.Model.Autor;
+using Cursinho.ViewModel.Administrador;
 using Microsoft.EntityFrameworkCore;
+using System.Net.WebSockets;
 using System.Runtime.Intrinsics.Arm;
+using System.Xml.Linq;
 
 namespace Cursinho.Infraestrutura.Autor
 {
@@ -53,7 +56,48 @@ namespace Cursinho.Infraestrutura.Autor
         {
             try
             {
-                return _context.Administradores.FirstOrDefault(x => x.nome == name);
+                return await _context.Administradores.FirstOrDefaultAsync(x => x.nome == name);
+            }
+            catch (Exception erro)
+            {
+                string mensagemErro = erro.Message;
+                throw new Exception(mensagemErro);
+            }
+        }
+
+        public async void Disable(int id)
+        {
+            try
+            {
+                // obtendo a entidade pelo id
+                var adm = await _context.Administradores.FirstOrDefaultAsync(x => x.id == id);
+
+                // alteração do status da entidade
+                adm.status = false;
+
+                // salvando os dados
+                _context.SaveChanges();
+            }
+            catch (Exception erro)
+            {
+                string mensagemErro = erro.Message;
+                throw new Exception(mensagemErro);
+            }
+        }
+
+
+        public async void Delete(int id)
+        {
+            try
+            {
+                // obtendo a entidade pelo id
+                var adm = await _context.Administradores.FirstOrDefaultAsync(x => x.id == id);
+
+                // removendo entidade do bd
+                _context.Administradores.Remove(adm);
+
+                // salvando os dados
+                _context.SaveChanges();
             }
             catch (Exception erro)
             {

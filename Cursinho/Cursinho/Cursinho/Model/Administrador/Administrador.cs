@@ -12,7 +12,7 @@ namespace Cursinho.Model.Autor
         public string? email { get; private set; }
         public string? senha { get; private set; }
         public string? cargo { get; private set; }
-        public bool? status { get; private set; }
+        public bool? status { get;  set; }
         public DateTime? data_cadastro { get; private set; }
 
 
@@ -25,7 +25,9 @@ namespace Cursinho.Model.Autor
             this.status = status;
             this.data_cadastro = data_cadastro;
         }
+
         
+
         public Administrador(string nome, string email, string cargo)
         {
             this.nome = nome;
@@ -37,6 +39,15 @@ namespace Cursinho.Model.Autor
         {
         }
 
-
+        public Administrador(int? id, string? nome, string? email, string? senha, string? cargo, bool? status, DateTime? data_cadastro)
+        {
+            this.id = id;
+            this.nome = nome;
+            this.email = email;
+            this.senha = senha;
+            this.cargo = cargo;
+            this.status = status;
+            this.data_cadastro = data_cadastro;
+        }
     }
 }

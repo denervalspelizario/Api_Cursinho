@@ -8,8 +8,12 @@ namespace Cursinho.Model.Autor
 
         Task<List<Administrador>> Get();
 
-        Task<Administrador?> GetAdministrador(int id);
+        Task<Administrador> GetAdministrador(int id);
 
-        Task<Administrador?> FindByName(string name);
+        Task<Administrador> FindByName(string name);
+
+        void Disable(int id);
+
+        void Delete(int id);
     }
 }

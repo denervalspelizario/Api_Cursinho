@@ -10,11 +10,7 @@ namespace Cursinho.Controllers
     [Route("api/v1/administrador")]
     public class AdministradorController : ControllerBase
     {
-
         private readonly IAdministradorRepository _repository;
-
-        private readonly ConnectionContext _context = new ConnectionContext();
-
 
         public AdministradorController(IAdministradorRepository repository)
         {
@@ -48,9 +44,8 @@ namespace Cursinho.Controllers
             // adicao ao bd
             _repository.Add(adm);
 
-            // buscando usuário adicionando para se pegar id do user
-            //var admEncontrado = _context.Administradores.FirstOrDefault(x => x.nome == adm.nome);
 
+            // buscando usuário adicionando para se pegar id do user
             var admEncontrado =  await _repository.FindByName(administrador.nome);
 
             // Formatando msg de resposta
@@ -111,7 +106,7 @@ namespace Cursinho.Controllers
 
         // Administrador via Id
         [HttpGet]
-        [Route("administrador/{id}")]
+        [Route("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             // instanciando objeto com estrutura da resposta
@@ -127,7 +122,7 @@ namespace Cursinho.Controllers
                 administrador.email,
                 administrador.cargo,
                 administrador.data_cadastro
-                ); ;
+                ); 
 
             // resposta estrutura
             resposta.Dados = admResponse;
@@ -138,5 +133,28 @@ namespace Cursinho.Controllers
             return Ok(resposta);
         }
 
+
+        [HttpPatch]
+        [Route("disable/{id}")]
+        public IActionResult Disable(int id)
+        {
+            
+            // fazendo a desativação o user
+            _repository.Disable(id);
+
+            return NoContent();
+        }
+
+
+        [HttpDelete]
+        [Route("delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+
+            // fazendo a desativação o user
+            _repository.Delete(id);
+
+            return NoContent();
+        }
     }
 }
