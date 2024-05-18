@@ -72,11 +72,15 @@ namespace Cursinho.Controllers
         public async Task<IActionResult> Get()
         {
             // resposta formatada
-            
             var resposta = new ResponseAdministradorList<List<AdministradorResponseViewModel>>();
 
             // dados com todos administradores
             var administradores = await _repository.Get();
+
+            
+           
+
+
 
             // objeto com Lista de objetos tipo AdministradorResponseViewModel
             var listaAdms = new List<AdministradorResponseViewModel>();
@@ -84,16 +88,20 @@ namespace Cursinho.Controllers
             // adicionando todos os adms na lista de objetos respostaFormatada
             foreach (var adm in administradores)
             {
-                var admFormatado = new AdministradorResponseViewModel
-                {
-                    id = adm.id,
-                    nome = adm.nome,
-                    email = adm.email,
-                    cargo = adm.cargo,
-                    data_cadastro = adm.data_cadastro
-                };
 
-                listaAdms.Add(admFormatado);
+                if (adm.status == true)
+                {
+                    var admFormatado = new AdministradorResponseViewModel
+                    {
+                        id = adm.id,
+                        nome = adm.nome,
+                        email = adm.email,
+                        cargo = adm.cargo,
+                        data_cadastro = adm.data_cadastro
+                    };
+
+                    listaAdms.Add(admFormatado);
+                }
             }
 
             // resposta estrutura
@@ -114,6 +122,12 @@ namespace Cursinho.Controllers
 
             // fazendo busca pelo id
             var administrador = await _repository.GetAdministrador(id);
+
+            // Verificação se status de user for false 
+            if(administrador.status is false)
+            {
+                return NotFound("Usuário não encontrado");
+            }
 
             // objeto com o a resposta da busa pelo id estruturado
             var admResponse = new AdministradorResponseViewModel(
