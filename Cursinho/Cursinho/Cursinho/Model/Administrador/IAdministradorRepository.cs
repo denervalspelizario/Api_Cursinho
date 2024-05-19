@@ -13,7 +13,7 @@ namespace Cursinho.Model.Autor
         Task<Administrador> FindByName(string name);
 
         void Disable(int id);
-
+        void Enable(int id);
         void Delete(int id);
     }
 }

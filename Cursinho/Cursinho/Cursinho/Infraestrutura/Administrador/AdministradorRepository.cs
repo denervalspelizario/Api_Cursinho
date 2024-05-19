@@ -19,14 +19,12 @@ namespace Cursinho.Infraestrutura.Autor
                 _context.Administradores.Add(administrador);
 
                 _context.SaveChanges();
-
             }
             catch (Exception erro)
             {
                 string mensagemErro = erro.Message;
                 throw new Exception(mensagemErro);
             }
-            
         }
 
         public async Task<List<Administrador>> Get()
@@ -42,13 +40,20 @@ namespace Cursinho.Infraestrutura.Autor
                 string mensagemErro = erro.Message;
                 throw new Exception(mensagemErro);
             }
-
-            
         }
 
         public async Task<Administrador> GetAdministrador(int id)
         {
-            return await _context.Administradores.FindAsync(id);
+            
+            try
+            {
+                return await _context.Administradores.FindAsync(id);
+            }
+            catch (Exception erro)
+            {
+                string mensagemErro = erro.Message;
+                throw new Exception(mensagemErro);
+            }
         }
 
 
@@ -74,6 +79,27 @@ namespace Cursinho.Infraestrutura.Autor
 
                 // alteração do status da entidade
                 adm.status = false;
+
+                // salvando os dados
+                _context.SaveChanges();
+            }
+            catch (Exception erro)
+            {
+                string mensagemErro = erro.Message;
+                throw new Exception(mensagemErro);
+            }
+        }
+
+
+        public async void Enable(int id)
+        {
+            try
+            {
+                // obtendo a entidade pelo id
+                var adm = await _context.Administradores.FirstOrDefaultAsync(x => x.id == id);
+
+                // alteração do status da entidade
+                adm.status = true;
 
                 // salvando os dados
                 _context.SaveChanges();

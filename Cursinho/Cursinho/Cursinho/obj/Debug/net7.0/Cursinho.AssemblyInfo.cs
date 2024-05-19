@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Cursinho")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+16f85368e832103e82c4d4b20e8e9f6c8e3a2b26")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+337cacaeb9c358a49b2228a6ea24ff3c366e702f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Cursinho")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Cursinho")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -88,7 +88,6 @@ namespace Cursinho.Controllers
             // adicionando todos os adms na lista de objetos respostaFormatada
             foreach (var adm in administradores)
             {
-
                 if (adm.status == true)
                 {
                     var admFormatado = new AdministradorResponseViewModel
@@ -155,6 +154,17 @@ namespace Cursinho.Controllers
             
             // fazendo a desativação o user
             _repository.Disable(id);
+
+            return NoContent();
+        }
+
+        [HttpPatch]
+        [Route("enable/{id}")]
+        public IActionResult Enable(int id)
+        {
+
+            // fazendo ativação o user
+            _repository.Enable(id);
 
             return NoContent();
         }
