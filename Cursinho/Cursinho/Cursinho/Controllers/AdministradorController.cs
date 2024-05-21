@@ -2,6 +2,7 @@
 using Cursinho.Model.Autor;
 using Cursinho.Model.Response.Administrador;
 using Cursinho.ViewModel.Administrador;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cursinho.Controllers
@@ -78,10 +79,6 @@ namespace Cursinho.Controllers
             var administradores = await _repository.Get();
 
             
-           
-
-
-
             // objeto com Lista de objetos tipo AdministradorResponseViewModel
             var listaAdms = new List<AdministradorResponseViewModel>();
 
@@ -146,7 +143,7 @@ namespace Cursinho.Controllers
             return Ok(resposta);
         }
 
-
+        // Desabilitando Administrador
         [HttpPatch]
         [Route("disable/{id}")]
         public IActionResult Disable(int id)
@@ -155,9 +152,10 @@ namespace Cursinho.Controllers
             // fazendo a desativação o user
             _repository.Disable(id);
 
-            return NoContent();
+            return Ok("Usuário em status desativado com sucesso");
         }
 
+        // Habilitando Administrador
         [HttpPatch]
         [Route("enable/{id}")]
         public IActionResult Enable(int id)
@@ -166,10 +164,10 @@ namespace Cursinho.Controllers
             // fazendo ativação o user
             _repository.Enable(id);
 
-            return NoContent();
+            return Ok("Usuário com status ativo com sucesso!");
         }
 
-
+        // Deletando Administrador
         [HttpDelete]
         [Route("delete/{id}")]
         public IActionResult Delete(int id)
@@ -178,7 +176,7 @@ namespace Cursinho.Controllers
             // fazendo a desativação o user
             _repository.Delete(id);
 
-            return NoContent();
+            return Ok("Usuário deletado com sucesso!");
         }
     }
 }
