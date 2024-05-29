@@ -178,5 +178,26 @@ namespace Cursinho.Controllers
 
             return Ok("Usuário deletado com sucesso!");
         }
+
+
+        // Update Administrador
+        [HttpPatch]
+        // ALTERAR PARAMETRO DE ENTRADA  QUE RECEBE ID, OPÇÃO VIAVEL SERIA VC PODE CRIAR
+        public async Task<IActionResult> Update(AdministradorUpdateViewModel administrador)
+        {
+            /*
+                "id": 23,
+                "nome": "Van Gomes",
+                "email": "gomes@gmail.com",
+                "senha": "gomes123",
+                "cargo": "secretaria"
+             */
+
+
+            // adicao ao bd
+            var dados = await _repository.Update(administrador);
+
+            return Ok(dados);
+        }
     }
 }

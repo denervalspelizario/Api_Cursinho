@@ -18,6 +18,16 @@
             this.data_cadastro = data_cadastro;
         }
 
+        public AdministradorResponseViewModel(int? id, string? nome, string? email, string? cargo)
+        {
+            this.id = id;
+            this.nome = nome;
+            this.email = email;
+            this.cargo = cargo;
+            
+        }
+
+
         public AdministradorResponseViewModel(string nome, string email, string cargo, DateTime? data_cadastro)
         {
             this.nome = nome;

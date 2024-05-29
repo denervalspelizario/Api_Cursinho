@@ -1,5 +1,7 @@
 ﻿using Cursinho.Model.Autor;
+using Cursinho.Model.Response.Administrador;
 using Cursinho.ViewModel.Administrador;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using System.Net.WebSockets;
 using System.Runtime.Intrinsics.Arm;
@@ -129,6 +131,88 @@ namespace Cursinho.Infraestrutura.Autor
             {
                 string mensagemErro = erro.Message;
                 throw new Exception(mensagemErro);
+            }
+        }
+
+
+        // ALTERAR PARAMETRO DE ENTRADA  QUE RECEBE ID, OPÇÃO VIAVEL SERIA VC PODE CRIAR
+        public async Task<ResponseAdministrador<AdministradorResponseViewModel>> Update(AdministradorUpdateViewModel administrador) 
+        {
+            // resposta formatada
+            var resposta = new ResponseAdministrador<AdministradorResponseViewModel>();
+
+            try
+            {
+                if(administrador.email is null)
+                {
+                    //await Console.Out.WriteLineAsync("Voce precisa adicionar pelo menos email do administrador");
+                    //return;
+                }
+
+                // validando se usuário passou id
+                if (administrador.id == null)
+                {
+                    //await Console.Out.WriteLineAsync("Usuário não encontrado");
+                    resposta.Mensagem = "Id do usuário é necessário";
+                    return resposta;
+                }
+
+
+                // obtendo a entidade pelo id
+                var adm = await _context.Administradores.FirstOrDefaultAsync(x => x.id == administrador.id);
+                
+                // validando se user foi encontrado
+                if (adm is null)
+                {
+                    resposta.Mensagem = "Usuário não encontrado";
+                    return resposta; 
+                }
+
+                
+
+                // criando um objeto que irá atualizar dados da tabela 
+                var admAtualizado = new Administrador(
+                    adm.id,
+                    administrador.nome,
+                    administrador.email,
+                    administrador.senha,
+                    administrador.cargo,
+                    adm.status,
+                    adm.data_cadastro
+                    );
+
+                // alterando tabela com dados adm por dados admAtualizado
+                _context.Administradores.Entry(adm).CurrentValues.SetValues(admAtualizado);
+
+
+                
+                // salvando os dados no banco
+                _context.SaveChanges();
+
+                // Formatando msg de resposta
+                var admResponse = new AdministradorResponseViewModel(
+                    admAtualizado.id,
+                    admAtualizado.nome,
+                    admAtualizado.email,
+                    admAtualizado.cargo,
+                    admAtualizado.data_cadastro
+                    ); ;
+
+                //resposta estrutura
+                resposta.Dados = admResponse;
+                resposta.Status = (bool)adm.status;
+                resposta.Mensagem = "Dados Atualizados com Sucesso";
+
+
+                // retornando resposta
+                return resposta;
+
+            }
+            catch (Exception erro )
+            {
+                resposta.Mensagem = erro.Message;
+                resposta.Status = false; // como deu erro status será false(ele por default e true)
+                return resposta;
             }
         }
     }
