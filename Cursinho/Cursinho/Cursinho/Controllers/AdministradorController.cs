@@ -1,4 +1,5 @@
-﻿using Cursinho.Infraestrutura;
+﻿using Cursinho.Dto.Administrador;
+using Cursinho.Infraestrutura;
 using Cursinho.Model.Autor;
 using Cursinho.Model.Response.Administrador;
 using Cursinho.ViewModel.Administrador;
@@ -20,6 +21,8 @@ namespace Cursinho.Controllers
 
 
         // Adição de Administrador
+        //Obs criar um DTO pasta DTO > pasta Administrador > classe AdmiministradorCriacaoDTO
+        // essa classe será o parametro de entrada
         [HttpPost]
         public async Task<IActionResult> Add(AdministradorViewModel administrador)
         {
@@ -181,21 +184,22 @@ namespace Cursinho.Controllers
 
 
         // Update Administrador
-        [HttpPatch]
-        // ALTERAR PARAMETRO DE ENTRADA  QUE RECEBE ID, OPÇÃO VIAVEL SERIA VC PODE CRIAR
-        public async Task<IActionResult> Update(AdministradorUpdateViewModel administrador)
+        [HttpPatch("AtualizarAdministrador")]      
+        public async Task<IActionResult> Update(AdministradorUpdateDTO administrador)
         {
-            /*
-                "id": 23,
-                "nome": "Van Gomes",
-                "email": "gomes@gmail.com",
-                "senha": "gomes123",
-                "cargo": "secretaria"
-             */
-
-
-            // adicao ao bd
             var dados = await _repository.Update(administrador);
+
+           
+            if (dados.Mensagem == "Id do usuário é necessário")
+            {
+                return BadRequest("Id do usuário é necessário");
+            }
+
+            if (dados.Mensagem == "Usuário não encontrado")
+            {
+                return BadRequest("Usuário não encontrado");
+            }
+
 
             return Ok(dados);
         }

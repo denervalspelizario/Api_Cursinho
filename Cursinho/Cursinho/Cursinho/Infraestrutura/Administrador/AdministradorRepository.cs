@@ -1,4 +1,5 @@
-﻿using Cursinho.Model.Autor;
+﻿using Cursinho.Dto.Administrador;
+using Cursinho.Model.Autor;
 using Cursinho.Model.Response.Administrador;
 using Cursinho.ViewModel.Administrador;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -135,28 +136,20 @@ namespace Cursinho.Infraestrutura.Autor
         }
 
 
-        // ALTERAR PARAMETRO DE ENTRADA  QUE RECEBE ID, OPÇÃO VIAVEL SERIA VC PODE CRIAR
-        public async Task<ResponseAdministrador<AdministradorResponseViewModel>> Update(AdministradorUpdateViewModel administrador) 
+        // UPDATE ADMINISTRADOR
+        public async Task<ResponseAdministrador<AdministradorResponseViewModel>> Update(AdministradorUpdateDTO administrador)
         {
             // resposta formatada
             var resposta = new ResponseAdministrador<AdministradorResponseViewModel>();
 
             try
             {
-                if(administrador.email is null)
-                {
-                    //await Console.Out.WriteLineAsync("Voce precisa adicionar pelo menos email do administrador");
-                    //return;
-                }
-
                 // validando se usuário passou id
                 if (administrador.id == null)
                 {
-                    //await Console.Out.WriteLineAsync("Usuário não encontrado");
                     resposta.Mensagem = "Id do usuário é necessário";
                     return resposta;
                 }
-
 
                 // obtendo a entidade pelo id
                 var adm = await _context.Administradores.FirstOrDefaultAsync(x => x.id == administrador.id);
@@ -211,7 +204,7 @@ namespace Cursinho.Infraestrutura.Autor
             catch (Exception erro )
             {
                 resposta.Mensagem = erro.Message;
-                resposta.Status = false; // como deu erro status será false(ele por default e true)
+                resposta.Status = false;
                 return resposta;
             }
         }

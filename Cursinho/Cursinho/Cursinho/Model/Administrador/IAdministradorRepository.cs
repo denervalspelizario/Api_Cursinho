@@ -1,4 +1,5 @@
-﻿using Cursinho.Model.Response.Administrador;
+﻿using Cursinho.Dto.Administrador;
+using Cursinho.Model.Response.Administrador;
 using Cursinho.ViewModel.Administrador;
 
 namespace Cursinho.Model.Autor
@@ -17,8 +18,6 @@ namespace Cursinho.Model.Autor
         void Enable(int id);
         void Delete(int id);
 
-
-        // ALTERAR PARAMETRO DE ENTRADA  QUE RECEBE ID, OPÇÃO VIAVEL SERIA VC PODE CRIAR
-        Task<ResponseAdministrador<AdministradorResponseViewModel>> Update(AdministradorUpdateViewModel administrador);
+        Task<ResponseAdministrador<AdministradorResponseViewModel>> Update(AdministradorUpdateDTO administrador);
     }
 }
