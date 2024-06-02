@@ -149,37 +149,37 @@ namespace Cursinho.Controllers
         // Desabilitando Administrador
         [HttpPatch]
         [Route("disable/{id}")]
-        public IActionResult Disable(int id)
+        public async Task<IActionResult> Disable(int id)
         {
             
             // fazendo a desativação o user
-            _repository.Disable(id);
+            var resposta = await _repository.Disable(id);
 
-            return Ok("Usuário em status desativado com sucesso");
+            return Ok(resposta);
         }
 
         // Habilitando Administrador
         [HttpPatch]
         [Route("enable/{id}")]
-        public IActionResult Enable(int id)
+        public async Task<IActionResult> Enable(int id)
         {
 
             // fazendo ativação o user
-            _repository.Enable(id);
+            var resposta = await _repository.Enable(id);
 
-            return Ok("Usuário com status ativo com sucesso!");
+            return Ok(resposta);
         }
 
         // Deletando Administrador
         [HttpDelete]
         [Route("delete/{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
 
-            // fazendo a desativação o user
-            _repository.Delete(id);
+            // deletando user
+            var resposta =  await _repository.Delete(id);
 
-            return Ok("Usuário deletado com sucesso!");
+            return Ok(resposta);
         }
 
 

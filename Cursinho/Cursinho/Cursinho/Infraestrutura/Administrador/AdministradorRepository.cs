@@ -73,18 +73,24 @@ namespace Cursinho.Infraestrutura.Autor
             }
         }
 
-        public async void Disable(int id)
+        public async Task<ResponseAdministradorMessage> Disable(int id)
         {
+            // resposta formatada
+            var resposta = new ResponseAdministradorMessage();
+
             try
             {
                 // obtendo a entidade pelo id
-                var adm = await _context.Administradores.FirstOrDefaultAsync(x => x.id == id);
+                var admEncontrado = await _context.Administradores.FirstOrDefaultAsync(x => x.id == id);
 
                 // alteração do status da entidade
-                adm.status = false;
+                admEncontrado.status = false;
 
                 // salvando os dados
                 _context.SaveChanges();
+
+                resposta.Mensagem = "Cadastro do usuário desativado com sucesso";
+                return resposta;
             }
             catch (Exception erro)
             {
@@ -94,18 +100,25 @@ namespace Cursinho.Infraestrutura.Autor
         }
 
 
-        public async void Enable(int id)
+        public async Task<ResponseAdministradorMessage> Enable(int id)
         {
+            // resposta formatada
+            var resposta = new ResponseAdministradorMessage();
+
             try
             {
                 // obtendo a entidade pelo id
-                var adm = await _context.Administradores.FirstOrDefaultAsync(x => x.id == id);
+                var admEncontrado = await _context.Administradores.FirstOrDefaultAsync(x => x.id == id);
 
                 // alteração do status da entidade
-                adm.status = true;
+                admEncontrado.status = true;
 
                 // salvando os dados
                 _context.SaveChanges();
+
+                resposta.Mensagem = "Cadastro do usuário ativo com sucesso";
+                return resposta;
+
             }
             catch (Exception erro)
             {
@@ -114,19 +127,47 @@ namespace Cursinho.Infraestrutura.Autor
             }
         }
 
-
-        public async void Delete(int id)
+       
+        public async Task<ResponseAdministradorMessage> Delete(int idUsuario)
         {
+            // resposta formatada
+            var resposta = new ResponseAdministradorMessage();
+
             try
             {
+
                 // obtendo a entidade pelo id
-                var adm = await _context.Administradores.FirstOrDefaultAsync(x => x.id == id);
+                var admEncontrado = await _context.Administradores.FirstOrDefaultAsync(x => x.id == idUsuario);
+
+
+                // validando se user foi encontrado
+                if (admEncontrado is null)
+                {
+                    resposta.Mensagem = "Usuário não encontrado";
+                    return resposta;
+                }
+
 
                 // removendo entidade do bd
-                _context.Administradores.Remove(adm);
+                _context.Administradores.Remove(admEncontrado);
 
                 // salvando os dados
                 _context.SaveChanges();
+
+                resposta.Mensagem = "Usuário deletado com sucesso";
+                return resposta;
+
+
+                // obtendo a entidade pelo id
+                //var buscandoAdmRemovido = await _context.Administradores.FirstOrDefaultAsync(x => x.id == id);
+
+                //if(buscandoAdmRemovido is null)
+                //{
+                //    resposta.Mensagem = "Usuário deletado com sucesso";
+                //    return resposta;
+                //}
+
+
             }
             catch (Exception erro)
             {

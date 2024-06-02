@@ -14,9 +14,9 @@ namespace Cursinho.Model.Autor
 
         Task<Administrador> FindByName(string name);
 
-        void Disable(int id);
-        void Enable(int id);
-        void Delete(int id);
+        Task<ResponseAdministradorMessage> Disable(int id);
+        Task<ResponseAdministradorMessage> Enable(int id);
+        Task<ResponseAdministradorMessage> Delete(int id);
 
         Task<ResponseAdministrador<AdministradorResponseViewModel>> Update(AdministradorUpdateDTO administrador);
     }
