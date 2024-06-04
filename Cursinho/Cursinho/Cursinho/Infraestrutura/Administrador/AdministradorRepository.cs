@@ -15,13 +15,60 @@ namespace Cursinho.Infraestrutura.Autor
 
         private readonly ConnectionContext _context = new ConnectionContext();
 
-        public void Add(Administrador administrador)
+        public async Task<ResponseAdministrador<AdministradorResponseViewModel>> Add(AdministradorCreateDTO administrador)
         {
+            // resposta formatada
+            var resposta = new ResponseAdministrador<AdministradorResponseViewModel>();
+
             try
             {
-                _context.Administradores.Add(administrador);
+                // todo cadastro o status se inicia com true
+                var status = true; 
+
+                // Data de Cadastro
+                DateTime dataCadastro = DateTime.Today;
+                DateTime dataCadastroUTC = dataCadastro.ToUniversalTime();
+
+                // criando obj para adicionar no bd
+                var admAdicionado = new Administrador(
+                     administrador.nome,
+                     administrador.email,
+                     administrador.senha,
+                     administrador.cargo,
+                     status,
+                     dataCadastroUTC
+                     );
+
+
+                _context.Administradores.Add(admAdicionado);
 
                 _context.SaveChanges();
+
+               // buscando user já adicionado ao bd
+                var admEncontrado = await _context.Administradores.FirstOrDefaultAsync(x => x.email == admAdicionado.email);
+                
+                if ( admEncontrado is null ) 
+                {
+                    resposta.Mensagem = "Erro no sistema usuário não adicionado";
+                    resposta.Status = false;
+                    return resposta;
+                }
+
+                // Formatando msg de resposta
+                var admResposta = new AdministradorResponseViewModel(
+                    admEncontrado.id, // id de user adicionado
+                    admEncontrado.nome,
+                    admEncontrado.email,
+                    admEncontrado.cargo,
+                    admEncontrado.data_cadastro
+                    ); ;
+
+                // resposta estrutura
+                resposta.Dados = admResposta;
+                resposta.Status = status;
+                resposta.Mensagem = "Dados Adicionados com Sucesso";
+
+                return resposta;
             }
             catch (Exception erro)
             {
@@ -47,7 +94,7 @@ namespace Cursinho.Infraestrutura.Autor
 
         public async Task<Administrador> GetAdministrador(int id)
         {
-            
+
             try
             {
                 return await _context.Administradores.FindAsync(id);
@@ -59,12 +106,12 @@ namespace Cursinho.Infraestrutura.Autor
             }
         }
 
-
-        public async Task<Administrador> FindByName(string name)
+        /* Buscando User pelo email
+        public async Task<Administrador> FindByEmail(string emailUsuario)
         {
             try
             {
-                return await _context.Administradores.FirstOrDefaultAsync(x => x.nome == name);
+                return await _context.Administradores.FirstOrDefaultAsync(x => x.email == emailUsuario);
             }
             catch (Exception erro)
             {
@@ -72,8 +119,10 @@ namespace Cursinho.Infraestrutura.Autor
                 throw new Exception(mensagemErro);
             }
         }
+        */
 
-        public async Task<ResponseAdministradorMessage> Disable(int id)
+        // Desativando status do usuário
+        public async Task<ResponseAdministradorMessage> Disable(int idUsuario)
         {
             // resposta formatada
             var resposta = new ResponseAdministradorMessage();
@@ -81,7 +130,7 @@ namespace Cursinho.Infraestrutura.Autor
             try
             {
                 // obtendo a entidade pelo id
-                var admEncontrado = await _context.Administradores.FirstOrDefaultAsync(x => x.id == id);
+                var admEncontrado = await _context.Administradores.FirstOrDefaultAsync(x => x.id == idUsuario);
 
                 // alteração do status da entidade
                 admEncontrado.status = false;
@@ -99,8 +148,8 @@ namespace Cursinho.Infraestrutura.Autor
             }
         }
 
-
-        public async Task<ResponseAdministradorMessage> Enable(int id)
+        // Ativando status do usuário
+        public async Task<ResponseAdministradorMessage> Enable(int idUsuario)
         {
             // resposta formatada
             var resposta = new ResponseAdministradorMessage();
@@ -108,7 +157,7 @@ namespace Cursinho.Infraestrutura.Autor
             try
             {
                 // obtendo a entidade pelo id
-                var admEncontrado = await _context.Administradores.FirstOrDefaultAsync(x => x.id == id);
+                var admEncontrado = await _context.Administradores.FirstOrDefaultAsync(x => x.id == idUsuario);
 
                 // alteração do status da entidade
                 admEncontrado.status = true;
@@ -127,7 +176,7 @@ namespace Cursinho.Infraestrutura.Autor
             }
         }
 
-       
+        // Deletando dados do usuário
         public async Task<ResponseAdministradorMessage> Delete(int idUsuario)
         {
             // resposta formatada

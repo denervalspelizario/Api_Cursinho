@@ -6,13 +6,11 @@ namespace Cursinho.Model.Autor
 {
     public interface IAdministradorRepository
     {
-        void Add(Administrador administrador);
+        Task<ResponseAdministrador<AdministradorResponseViewModel>> Add(AdministradorCreateDTO administrador);
 
         Task<List<Administrador>> Get();
 
         Task<Administrador> GetAdministrador(int id);
-
-        Task<Administrador> FindByName(string name);
 
         Task<ResponseAdministradorMessage> Disable(int id);
         Task<ResponseAdministradorMessage> Enable(int id);

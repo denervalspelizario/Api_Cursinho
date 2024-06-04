@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Cursinho.Controllers
 {
     [ApiController]
-    [Route("api/v1/administrador")]
+    [Route("api/v1/Administrador")]
     public class AdministradorController : ControllerBase
     {
         private readonly IAdministradorRepository _repository;
@@ -21,50 +21,19 @@ namespace Cursinho.Controllers
 
 
         // Adição de Administrador
-        //Obs criar um DTO pasta DTO > pasta Administrador > classe AdmiministradorCriacaoDTO
-        // essa classe será o parametro de entrada
         [HttpPost]
-        public async Task<IActionResult> Add(AdministradorViewModel administrador)
+        [Route("AdicionarAdministrador")]
+        public async Task<IActionResult> Add(AdministradorCreateDTO administrador)
         {
-            // resposta formatada
-            var resposta = new ResponseAdministrador<AdministradorResponseViewModel>();
-
-                var status = true; // todo cadastro o status se inicia com true
-
-                // Data de Cadastro
-                DateTime dataCadastro = DateTime.Today;
-                DateTime dataCadastroUTC = dataCadastro.ToUniversalTime();
-
-               // criando obj para adicionar no bd
-                var adm = new Administrador(
-                     administrador.nome,
-                     administrador.email,
-                     administrador.senha,
-                     administrador.cargo,
-                     status,
-                     dataCadastroUTC
-                     );
-
+            
             // adicao ao bd
-            _repository.Add(adm);
+            var resposta = await _repository.Add(administrador);
 
+           if(resposta.Mensagem == "Erro no sistema usuário não adicionado")
+           {
+                return BadRequest(resposta.Mensagem);
+           }
 
-            // buscando usuário adicionando para se pegar id do user
-            var admEncontrado =  await _repository.FindByName(administrador.nome);
-
-            // Formatando msg de resposta
-            var admResponse = new AdministradorResponseViewModel(
-                admEncontrado.id, // id de user adicionado
-                administrador.nome,
-                administrador.email,
-                administrador.cargo,
-                dataCadastroUTC
-                ); ;
-
-            // resposta estrutura
-            resposta.Dados = admResponse;
-            resposta.Status = status;
-            resposta.Mensagem = "Dados Adicionados com Sucesso";
 
             // retorno 200 com a resposta estruturada
             return Ok(resposta); 
@@ -148,7 +117,7 @@ namespace Cursinho.Controllers
 
         // Desabilitando Administrador
         [HttpPatch]
-        [Route("disable/{id}")]
+        [Route("DesabilitarAdministrador/{id}")]
         public async Task<IActionResult> Disable(int id)
         {
             
@@ -160,7 +129,7 @@ namespace Cursinho.Controllers
 
         // Habilitando Administrador
         [HttpPatch]
-        [Route("enable/{id}")]
+        [Route("HabilitarAdministrador/{id}")]
         public async Task<IActionResult> Enable(int id)
         {
 
@@ -172,7 +141,7 @@ namespace Cursinho.Controllers
 
         // Deletando Administrador
         [HttpDelete]
-        [Route("delete/{id}")]
+        [Route("DeletarAdministrador/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
 
