@@ -42,39 +42,12 @@ namespace Cursinho.Controllers
 
         // Lista de Administradores
         [HttpGet]
+        [Route("ListarAdministradores/")]
         public async Task<IActionResult> Get()
         {
-            // resposta formatada
-            var resposta = new ResponseAdministradorList<List<AdministradorResponseViewModel>>();
-
+           
             // dados com todos administradores
-            var administradores = await _repository.Get();
-
-            
-            // objeto com Lista de objetos tipo AdministradorResponseViewModel
-            var listaAdms = new List<AdministradorResponseViewModel>();
-
-            // adicionando todos os adms na lista de objetos respostaFormatada
-            foreach (var adm in administradores)
-            {
-                if (adm.status == true)
-                {
-                    var admFormatado = new AdministradorResponseViewModel
-                    {
-                        id = adm.id,
-                        nome = adm.nome,
-                        email = adm.email,
-                        cargo = adm.cargo,
-                        data_cadastro = adm.data_cadastro
-                    };
-
-                    listaAdms.Add(admFormatado);
-                }
-            }
-
-            // resposta estrutura
-            resposta.Dados = listaAdms;
-            resposta.Mensagem = "Dados recuperados com sucesso";
+            var resposta = await _repository.Get();
 
             // retornando status 200 com resposta formatada
             return Ok(resposta); 
@@ -82,34 +55,12 @@ namespace Cursinho.Controllers
 
         // Administrador via Id
         [HttpGet]
-        [Route("{id}")]
+        [Route("BuscarAdministrador/{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            // instanciando objeto com estrutura da resposta
-            var resposta = new ResponseAdministrador<AdministradorResponseViewModel>();
-
+           
             // fazendo busca pelo id
-            var administrador = await _repository.GetAdministrador(id);
-
-            // Verificação se status de user for false 
-            if(administrador.status is false)
-            {
-                return NotFound("Usuário não encontrado");
-            }
-
-            // objeto com o a resposta da busa pelo id estruturado
-            var admResponse = new AdministradorResponseViewModel(
-                administrador.id,
-                administrador.nome,
-                administrador.email,
-                administrador.cargo,
-                administrador.data_cadastro
-                ); 
-
-            // resposta estrutura
-            resposta.Dados = admResponse;
-            resposta.Status = (bool)administrador.status;
-            resposta.Mensagem = "Requisição feita com Sucesso";
+            var resposta = await _repository.GetAdministrador(id);
 
             // retorno 200 com a resposta estruturada
             return Ok(resposta);

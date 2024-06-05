@@ -77,13 +77,39 @@ namespace Cursinho.Infraestrutura.Autor
             }
         }
 
-        public async Task<List<Administrador>> Get()
+        public async Task<ResponseAdministradorList<List<AdministradorResponseViewModel>>> Get()
         {
+            var resposta = new ResponseAdministradorList<List<AdministradorResponseViewModel>>();
             try
             {
                 var adms = await _context.Administradores.ToListAsync();
 
-                return adms;
+                // objeto com Lista de objetos tipo AdministradorResponseViewModel
+                var listaAdms = new List<AdministradorResponseViewModel>();
+
+                // adicionando todos os adms na lista de objetos respostaFormatada
+                foreach (var adm in adms)
+                {
+                    if (adm.status == true)
+                    {
+                        var admFormatado = new AdministradorResponseViewModel
+                        {
+                            id = adm.id,
+                            nome = adm.nome,
+                            email = adm.email,
+                            cargo = adm.cargo,
+                            data_cadastro = adm.data_cadastro
+                        };
+
+                        listaAdms.Add(admFormatado);
+                    }
+                }
+
+                // resposta estrutura
+                resposta.Dados = listaAdms;
+                resposta.Mensagem = "Lista de usuário efetuado com sucesso";
+
+                return resposta;
             }
             catch (Exception erro)
             {
@@ -92,12 +118,38 @@ namespace Cursinho.Infraestrutura.Autor
             }
         }
 
-        public async Task<Administrador> GetAdministrador(int id)
+        public async Task<ResponseAdministrador<AdministradorResponseViewModel>> GetAdministrador(int id)
         {
-
+            // resposta formatada
+            var resposta = new ResponseAdministrador<AdministradorResponseViewModel>();
             try
             {
-                return await _context.Administradores.FindAsync(id);
+                var admEncontrado = await _context.Administradores.FindAsync(id);
+
+                // validando se user foi encontrado
+                if (admEncontrado is null)
+                {
+                    resposta.Mensagem = "Usuário não encontrado";
+                    return resposta;
+                }
+
+                // Formatando msg de resposta
+                var admResponse = new AdministradorResponseViewModel(
+                    admEncontrado.id,
+                    admEncontrado.nome,
+                    admEncontrado.email,
+                    admEncontrado.cargo,
+                    admEncontrado.data_cadastro
+                    ); ;
+
+                //resposta estrutura
+                resposta.Dados = admResponse;
+                resposta.Status = (bool)admEncontrado.status;
+                resposta.Mensagem = "Dados de Administrador listado com Sucesso";
+
+
+                // retornando resposta
+                return resposta;
             }
             catch (Exception erro)
             {
@@ -106,20 +158,6 @@ namespace Cursinho.Infraestrutura.Autor
             }
         }
 
-        /* Buscando User pelo email
-        public async Task<Administrador> FindByEmail(string emailUsuario)
-        {
-            try
-            {
-                return await _context.Administradores.FirstOrDefaultAsync(x => x.email == emailUsuario);
-            }
-            catch (Exception erro)
-            {
-                string mensagemErro = erro.Message;
-                throw new Exception(mensagemErro);
-            }
-        }
-        */
 
         // Desativando status do usuário
         public async Task<ResponseAdministradorMessage> Disable(int idUsuario)
@@ -205,17 +243,6 @@ namespace Cursinho.Infraestrutura.Autor
 
                 resposta.Mensagem = "Usuário deletado com sucesso";
                 return resposta;
-
-
-                // obtendo a entidade pelo id
-                //var buscandoAdmRemovido = await _context.Administradores.FirstOrDefaultAsync(x => x.id == id);
-
-                //if(buscandoAdmRemovido is null)
-                //{
-                //    resposta.Mensagem = "Usuário deletado com sucesso";
-                //    return resposta;
-                //}
-
 
             }
             catch (Exception erro)

@@ -8,9 +8,9 @@ namespace Cursinho.Model.Autor
     {
         Task<ResponseAdministrador<AdministradorResponseViewModel>> Add(AdministradorCreateDTO administrador);
 
-        Task<List<Administrador>> Get();
+        Task<ResponseAdministradorList<List<AdministradorResponseViewModel>>> Get();
 
-        Task<Administrador> GetAdministrador(int id);
+        Task<ResponseAdministrador<AdministradorResponseViewModel>> GetAdministrador(int id);
 
         Task<ResponseAdministradorMessage> Disable(int id);
         Task<ResponseAdministradorMessage> Enable(int id);
