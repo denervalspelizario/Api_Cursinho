@@ -2,7 +2,6 @@
 using Cursinho.Infraestrutura;
 using Cursinho.Model.Autor;
 using Cursinho.Model.Response.Administrador;
-using Cursinho.ViewModel.Administrador;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +21,7 @@ namespace Cursinho.Controllers
 
         // Adição de Administrador
         [HttpPost]
-        [Route("AdicionarAdministrador")]
+        [Route("AdicionarAdministrador/")]
         public async Task<IActionResult> Add(AdministradorCreateDTO administrador)
         {
             

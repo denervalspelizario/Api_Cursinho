@@ -26,19 +26,6 @@ namespace Cursinho.Model.Autor
             this.data_cadastro = data_cadastro;
         }
 
-        
-
-        public Administrador(string nome, string email, string cargo)
-        {
-            this.nome = nome;
-            this.email = email;
-            this.cargo = cargo;
-        }
-        
-        public Administrador()
-        {
-        }
-
         public Administrador(int? id, string? nome, string? email, string? senha, string? cargo, bool? status, DateTime? data_cadastro)
         {
             this.id = id;

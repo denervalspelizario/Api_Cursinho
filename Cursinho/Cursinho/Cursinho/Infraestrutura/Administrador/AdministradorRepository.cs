@@ -1,7 +1,6 @@
 ﻿using Cursinho.Dto.Administrador;
 using Cursinho.Model.Autor;
 using Cursinho.Model.Response.Administrador;
-using Cursinho.ViewModel.Administrador;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using System.Net.WebSockets;
@@ -15,10 +14,10 @@ namespace Cursinho.Infraestrutura.Autor
 
         private readonly ConnectionContext _context = new ConnectionContext();
 
-        public async Task<ResponseAdministrador<AdministradorResponseViewModel>> Add(AdministradorCreateDTO administrador)
+        public async Task<ResponseAdministrador<AdministradorViewModel>> Add(AdministradorCreateDTO administrador)
         {
             // resposta formatada
-            var resposta = new ResponseAdministrador<AdministradorResponseViewModel>();
+            var resposta = new ResponseAdministrador<AdministradorViewModel>();
 
             try
             {
@@ -55,7 +54,7 @@ namespace Cursinho.Infraestrutura.Autor
                 }
 
                 // Formatando msg de resposta
-                var admResposta = new AdministradorResponseViewModel(
+                var admResposta = new AdministradorViewModel(
                     admEncontrado.id, // id de user adicionado
                     admEncontrado.nome,
                     admEncontrado.email,
@@ -77,22 +76,24 @@ namespace Cursinho.Infraestrutura.Autor
             }
         }
 
-        public async Task<ResponseAdministradorList<List<AdministradorResponseViewModel>>> Get()
+
+        public async Task<ResponseAdministradorList<List<AdministradorViewModel>>> Get()
         {
-            var resposta = new ResponseAdministradorList<List<AdministradorResponseViewModel>>();
+            var resposta = new ResponseAdministradorList<List<AdministradorViewModel>>();
             try
             {
-                var adms = await _context.Administradores.ToListAsync();
+                // objeto com usuários do banco
+                var listaAdmBanco = await _context.Administradores.ToListAsync();
 
                 // objeto com Lista de objetos tipo AdministradorResponseViewModel
-                var listaAdms = new List<AdministradorResponseViewModel>();
+                var listaAdmResposta = new List<AdministradorViewModel>();
 
                 // adicionando todos os adms na lista de objetos respostaFormatada
-                foreach (var adm in adms)
+                foreach (var adm in listaAdmBanco)
                 {
                     if (adm.status == true)
                     {
-                        var admFormatado = new AdministradorResponseViewModel
+                        var admFormatado = new AdministradorViewModel
                         {
                             id = adm.id,
                             nome = adm.nome,
@@ -101,13 +102,13 @@ namespace Cursinho.Infraestrutura.Autor
                             data_cadastro = adm.data_cadastro
                         };
 
-                        listaAdms.Add(admFormatado);
+                        listaAdmResposta.Add(admFormatado);
                     }
                 }
 
                 // resposta estrutura
-                resposta.Dados = listaAdms;
-                resposta.Mensagem = "Lista de usuário efetuado com sucesso";
+                resposta.Dados = listaAdmResposta;
+                resposta.Mensagem = "Requisição efetuado com sucesso";
 
                 return resposta;
             }
@@ -118,10 +119,10 @@ namespace Cursinho.Infraestrutura.Autor
             }
         }
 
-        public async Task<ResponseAdministrador<AdministradorResponseViewModel>> GetAdministrador(int id)
+        public async Task<ResponseAdministrador<AdministradorViewModel>> GetAdministrador(int id)
         {
             // resposta formatada
-            var resposta = new ResponseAdministrador<AdministradorResponseViewModel>();
+            var resposta = new ResponseAdministrador<AdministradorViewModel>();
             try
             {
                 var admEncontrado = await _context.Administradores.FindAsync(id);
@@ -134,7 +135,7 @@ namespace Cursinho.Infraestrutura.Autor
                 }
 
                 // Formatando msg de resposta
-                var admResponse = new AdministradorResponseViewModel(
+                var admResponse = new AdministradorViewModel(
                     admEncontrado.id,
                     admEncontrado.nome,
                     admEncontrado.email,
@@ -254,10 +255,10 @@ namespace Cursinho.Infraestrutura.Autor
 
 
         // UPDATE ADMINISTRADOR
-        public async Task<ResponseAdministrador<AdministradorResponseViewModel>> Update(AdministradorUpdateDTO administrador)
+        public async Task<ResponseAdministrador<AdministradorViewModel>> Update(AdministradorUpdateDTO administrador)
         {
             // resposta formatada
-            var resposta = new ResponseAdministrador<AdministradorResponseViewModel>();
+            var resposta = new ResponseAdministrador<AdministradorViewModel>();
 
             try
             {
@@ -300,7 +301,7 @@ namespace Cursinho.Infraestrutura.Autor
                 _context.SaveChanges();
 
                 // Formatando msg de resposta
-                var admResponse = new AdministradorResponseViewModel(
+                var admResponse = new AdministradorViewModel(
                     admAtualizado.id,
                     admAtualizado.nome,
                     admAtualizado.email,
