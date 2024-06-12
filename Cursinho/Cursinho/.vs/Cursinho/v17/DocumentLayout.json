@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\repositorio\\Api_Cursinho\\Cursinho\\Cursinho\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{11ED4C13-7DE6-4AB2-B8CE-30FFCB762314}|Cursinho\\Cursinho.csproj|d:\\repositorio\\api_cursinho\\cursinho\\cursinho\\cursinho\\dto\\administrador\\administradorcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{11ED4C13-7DE6-4AB2-B8CE-30FFCB762314}|Cursinho\\Cursinho.csproj|solutionrelative:cursinho\\dto\\administrador\\administradorcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{11ED4C13-7DE6-4AB2-B8CE-30FFCB762314}|Cursinho\\Cursinho.csproj|d:\\repositorio\\api_cursinho\\cursinho\\cursinho\\cursinho\\controllers\\administradorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{11ED4C13-7DE6-4AB2-B8CE-30FFCB762314}|Cursinho\\Cursinho.csproj|solutionrelative:cursinho\\controllers\\administradorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{11ED4C13-7DE6-4AB2-B8CE-30FFCB762314}|Cursinho\\Cursinho.csproj|d:\\repositorio\\api_cursinho\\cursinho\\cursinho\\cursinho\\dto\\administrador\\administradorcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{11ED4C13-7DE6-4AB2-B8CE-30FFCB762314}|Cursinho\\Cursinho.csproj|solutionrelative:cursinho\\dto\\administrador\\administradorcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{11ED4C13-7DE6-4AB2-B8CE-30FFCB762314}|Cursinho\\Cursinho.csproj|d:\\repositorio\\api_cursinho\\cursinho\\cursinho\\cursinho\\infraestrutura\\administrador\\administradorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -53,7 +53,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Document",
@@ -69,7 +69,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AdministradorCreateDTO.cs",
               "DocumentMoniker": "D:\\repositorio\\Api_Cursinho\\Cursinho\\Cursinho\\Cursinho\\Dto\\Administrador\\AdministradorCreateDTO.cs",
               "RelativeDocumentMoniker": "Cursinho\\Dto\\Administrador\\AdministradorCreateDTO.cs",
@@ -114,8 +114,7 @@
               "RelativeToolTip": "Cursinho\\Model\\Administrador\\IAdministradorRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-19T14:37:39.8Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-19T14:37:39.8Z"
             },
             {
               "$type": "Document",
@@ -127,8 +126,7 @@
               "RelativeToolTip": "Cursinho\\Model\\Administrador\\Administrador.cs",
               "ViewState": "AQIAABEAAAAAAAAAAAAuwBsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-19T14:37:38.04Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-19T14:37:38.04Z"
             },
             {
               "$type": "Document",
@@ -140,8 +138,7 @@
               "RelativeToolTip": "Cursinho\\Infraestrutura\\Administrador\\AdministradorRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-19T13:42:37.899Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-19T13:42:37.899Z"
             },
             {
               "$type": "Document",
@@ -180,13 +177,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "AdministradorController.cs",
               "DocumentMoniker": "D:\\repositorio\\Api_Cursinho\\Cursinho\\Cursinho\\Cursinho\\Controllers\\AdministradorController.cs",
               "RelativeDocumentMoniker": "Cursinho\\Controllers\\AdministradorController.cs",
               "ToolTip": "D:\\repositorio\\Api_Cursinho\\Cursinho\\Cursinho\\Cursinho\\Controllers\\AdministradorController.cs",
               "RelativeToolTip": "Cursinho\\Controllers\\AdministradorController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAsAAAA",
+              "ViewState": "AQIAAFEAAAAAAAAAAAAcwFsAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-07T23:39:16.439Z",
               "EditorCaption": ""

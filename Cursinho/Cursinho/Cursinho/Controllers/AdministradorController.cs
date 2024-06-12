@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Cursinho.Controllers
 {
     [ApiController]
-    [Route("api/v1/Administrador")]
+    [Route("api/v1/administrador")]
     public class AdministradorController : ControllerBase
     {
         private readonly IAdministradorRepository _repository;
@@ -21,7 +21,7 @@ namespace Cursinho.Controllers
 
         // Adição de Administrador
         [HttpPost]
-        [Route("AdicionarAdministrador/")]
+        [Route("adicionarAdministrador/")]
         public async Task<IActionResult> Add(AdministradorCreateDTO administrador)
         {
             
@@ -41,7 +41,7 @@ namespace Cursinho.Controllers
 
         // Lista de Administradores
         [HttpGet]
-        [Route("ListarAdministradores/")]
+        [Route("listarAdministradores/")]
         public async Task<IActionResult> Get()
         {
            
@@ -54,7 +54,7 @@ namespace Cursinho.Controllers
 
         // Administrador via Id
         [HttpGet]
-        [Route("BuscarAdministrador/{id}")]
+        [Route("buscarAdministrador/{id:int}")]
         public async Task<IActionResult> Get(int id)
         {
            
@@ -67,7 +67,7 @@ namespace Cursinho.Controllers
 
         // Desabilitando Administrador
         [HttpPatch]
-        [Route("DesabilitarAdministrador/{id}")]
+        [Route("desabilitarAdministrador/{id:int}")]
         public async Task<IActionResult> Disable(int id)
         {
             
@@ -79,7 +79,7 @@ namespace Cursinho.Controllers
 
         // Habilitando Administrador
         [HttpPatch]
-        [Route("HabilitarAdministrador/{id}")]
+        [Route("habilitarAdministrador/{id:int}")]
         public async Task<IActionResult> Enable(int id)
         {
 
@@ -91,7 +91,7 @@ namespace Cursinho.Controllers
 
         // Deletando Administrador
         [HttpDelete]
-        [Route("DeletarAdministrador/{id}")]
+        [Route("deletarAdministrador/{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
 
@@ -103,7 +103,7 @@ namespace Cursinho.Controllers
 
 
         // Update Administrador
-        [HttpPatch("AtualizarAdministrador")]      
+        [HttpPatch("atualizarAdministrador")]      
         public async Task<IActionResult> Update(AdministradorUpdateDTO administrador)
         {
             var dados = await _repository.Update(administrador);
