@@ -31,9 +31,9 @@ namespace Cursinho.Infraestrutura.Autor
                 // criando obj para adicionar no bd
                 var admAdicionado = new Administrador(
                      administrador.nome,
-                     administrador.email,
+                     administrador.email.ToLower(),
                      administrador.senha,
-                     administrador.cargo,
+                     administrador.cargo.ToLower(),
                      status,
                      dataCadastroUTC
                      );
