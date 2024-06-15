@@ -103,24 +103,13 @@ namespace Cursinho.Controllers
 
 
         // Update Administrador
-        [HttpPatch("atualizarAdministrador")]      
+        [HttpPut("atualizarAdministrador")]      
         public async Task<IActionResult> Update(AdministradorUpdateDTO administrador)
         {
-            var dados = await _repository.Update(administrador);
+            var resposta = await _repository.Update(administrador);
 
            
-            if (dados.Mensagem == "Id do usuário é necessário")
-            {
-                return BadRequest("Id do usuário é necessário");
-            }
-
-            if (dados.Mensagem == "Usuário não encontrado")
-            {
-                return BadRequest("Usuário não encontrado");
-            }
-
-
-            return Ok(dados);
+            return Ok(resposta);
         }
     }
 }
