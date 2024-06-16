@@ -1,11 +1,7 @@
 ﻿using Cursinho.Dto.Administrador;
 using Cursinho.Model.Autor;
 using Cursinho.Model.Response.Administrador;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
-using System.Net.WebSockets;
-using System.Runtime.Intrinsics.Arm;
-using System.Xml.Linq;
 
 namespace Cursinho.Infraestrutura.Autor
 {
