@@ -10,10 +10,11 @@ namespace Cursinho.Infraestrutura.Autor
 
         private readonly ConnectionContext _context = new ConnectionContext();
 
-        public async Task<ResponseAdministrador<AdministradorViewModel>> Add(AdministradorCreateDTO administrador)
+        // adicionando administradores
+        public async Task<ResponseAdministrador<AdministradorResponseDTO>> Add(AdministradorCreateDTO administrador)
         {
             // resposta formatada
-            var resposta = new ResponseAdministrador<AdministradorViewModel>();
+            var resposta = new ResponseAdministrador<AdministradorResponseDTO>();
 
             try
             {
@@ -50,7 +51,7 @@ namespace Cursinho.Infraestrutura.Autor
                 }
 
                 // Formatando msg de resposta
-                var admResposta = new AdministradorViewModel(
+                var admResposta = new AdministradorResponseDTO(
                     admEncontrado.id, // id de user adicionado
                     admEncontrado.nome,
                     admEncontrado.email,
@@ -72,24 +73,24 @@ namespace Cursinho.Infraestrutura.Autor
             }
         }
 
-
-        public async Task<ResponseAdministradorList<List<AdministradorViewModel>>> Get()
+        // listando admnistradores
+        public async Task<ResponseAdministradorList<List<AdministradorResponseDTO>>> Get()
         {
-            var resposta = new ResponseAdministradorList<List<AdministradorViewModel>>();
+            var resposta = new ResponseAdministradorList<List<AdministradorResponseDTO>>();
             try
             {
                 // objeto com usuários do banco
                 var listaAdmBanco = await _context.Administradores.ToListAsync();
 
                 // objeto com Lista de objetos tipo AdministradorResponseViewModel
-                var listaAdmResposta = new List<AdministradorViewModel>();
+                var listaAdmResposta = new List<AdministradorResponseDTO>();
 
                 // adicionando todos os adms na lista de objetos respostaFormatada
                 foreach (var adm in listaAdmBanco)
                 {
                     if (adm.status == true)
                     {
-                        var admFormatado = new AdministradorViewModel
+                        var admFormatado = new AdministradorResponseDTO
                         {
                             id = adm.id,
                             nome = adm.nome,
@@ -115,10 +116,11 @@ namespace Cursinho.Infraestrutura.Autor
             }
         }
 
-        public async Task<ResponseAdministrador<AdministradorViewModel>> GetAdministrador(int id)
+        // buscando user por id
+        public async Task<ResponseAdministrador<AdministradorResponseDTO>> GetAdministrador(int id)
         {
             // resposta formatada
-            var resposta = new ResponseAdministrador<AdministradorViewModel>();
+            var resposta = new ResponseAdministrador<AdministradorResponseDTO>();
             try
             {
                 var admEncontrado = await _context.Administradores.FindAsync(id);
@@ -131,7 +133,7 @@ namespace Cursinho.Infraestrutura.Autor
                 }
 
                 // Formatando msg de resposta
-                var admResponse = new AdministradorViewModel(
+                var admResponse = new AdministradorResponseDTO(
                     admEncontrado.id,
                     admEncontrado.nome,
                     admEncontrado.email,
@@ -154,7 +156,6 @@ namespace Cursinho.Infraestrutura.Autor
                 throw new Exception(mensagemErro);
             }
         }
-
 
         // Desativando status do usuário
         public async Task<ResponseAdministradorMessage> Disable(int idUsuario)
@@ -249,12 +250,11 @@ namespace Cursinho.Infraestrutura.Autor
             }
         }
 
-
         // UPDATE ADMINISTRADOR
-        public async Task<ResponseAdministrador<AdministradorViewModel>> Update(AdministradorUpdateDTO administrador)
+        public async Task<ResponseAdministrador<AdministradorResponseDTO>> Update(AdministradorUpdateDTO administrador)
         {
             // resposta formatada
-            var resposta = new ResponseAdministrador<AdministradorViewModel>();
+            var resposta = new ResponseAdministrador<AdministradorResponseDTO>();
 
             try
             {
@@ -297,7 +297,7 @@ namespace Cursinho.Infraestrutura.Autor
                 _context.SaveChanges();
 
                 // Formatando msg de resposta
-                var admResponse = new AdministradorViewModel(
+                var admResponse = new AdministradorResponseDTO(
                     admAtualizado.id,
                     admAtualizado.nome,
                     admAtualizado.email,
