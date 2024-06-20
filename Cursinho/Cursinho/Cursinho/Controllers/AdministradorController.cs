@@ -24,6 +24,11 @@ namespace Cursinho.Controllers
             
             var resposta = await _repository.Add(administrador);
 
+            if(resposta.Mensagem == "Email já cadastrado")
+            {
+                return BadRequest(resposta.Mensagem);
+            }
+
             return Ok(resposta); 
         }
 

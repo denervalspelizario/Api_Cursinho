@@ -8,6 +8,7 @@ namespace Cursinho.Infraestrutura.Autor
     public class AdministradorRepository : IAdministradorRepository
     {
 
+        // acessando banco de dados
         private readonly ConnectionContext _context = new ConnectionContext();
 
         // adicionando administradores
@@ -24,6 +25,16 @@ namespace Cursinho.Infraestrutura.Autor
                 // Data de Cadastro
                 DateTime dataCadastro = DateTime.Today;
                 DateTime dataCadastroUTC = dataCadastro.ToUniversalTime();
+
+                // email ja existe?
+                var emailDuplicado = await _context.Administradores.FirstOrDefaultAsync(x => x.email == administrador.email);
+
+                if (emailDuplicado != null) 
+                {
+                    resposta.Mensagem = "Email já cadastrado";
+                    return resposta;
+                }
+
 
                 // criando obj para adicionar no bd
                 var admAdicionado = new Administrador(
@@ -43,13 +54,6 @@ namespace Cursinho.Infraestrutura.Autor
                // buscando user já adicionado ao bd
                 var admEncontrado = await _context.Administradores.FirstOrDefaultAsync(x => x.email == admAdicionado.email);
                 
-                if ( admEncontrado is null ) 
-                {
-                    resposta.Mensagem = "Erro no sistema usuário não adicionado";
-                    resposta.Status = false;
-                    return resposta;
-                }
-
                 // Formatando msg de resposta
                 var admResposta = new AdministradorResponseDTO(
                     admEncontrado.id, // id de user adicionado
