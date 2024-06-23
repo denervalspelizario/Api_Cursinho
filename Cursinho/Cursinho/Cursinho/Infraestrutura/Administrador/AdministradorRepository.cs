@@ -262,12 +262,7 @@ namespace Cursinho.Infraestrutura.Autor
 
             try
             {
-                // validando se usuário passou id
-                if (administrador.id == null)
-                {
-                    resposta.Mensagem = "Id do usuário é necessário";
-                    return resposta;
-                }
+               
 
                 // obtendo a entidade pelo id
                 var adm = await _context.Administradores.FirstOrDefaultAsync(x => x.id == administrador.id);
@@ -279,7 +274,15 @@ namespace Cursinho.Infraestrutura.Autor
                     return resposta; 
                 }
 
-                
+                // email ja existe?
+                var emailDuplicado = await _context.Administradores.FirstOrDefaultAsync(x => x.email == administrador.email);
+
+                if (emailDuplicado != null  && emailDuplicado.id != administrador.id)
+                {
+                    resposta.Mensagem = "Email já cadastrado";
+                    return resposta;
+                }
+
 
                 // criando um objeto que irá atualizar dados da tabela 
                 var admAtualizado = new Administrador(

@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\repositorio\\Api_Cursinho\\Cursinho\\Cursinho\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{11ED4C13-7DE6-4AB2-B8CE-30FFCB762314}|Cursinho\\Cursinho.csproj|d:\\repositorio\\api_cursinho\\cursinho\\cursinho\\cursinho\\infraestrutura\\administrador\\administradorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{11ED4C13-7DE6-4AB2-B8CE-30FFCB762314}|Cursinho\\Cursinho.csproj|solutionrelative:cursinho\\infraestrutura\\administrador\\administradorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{11ED4C13-7DE6-4AB2-B8CE-30FFCB762314}|Cursinho\\Cursinho.csproj|d:\\repositorio\\api_cursinho\\cursinho\\cursinho\\cursinho\\controllers\\administradorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{11ED4C13-7DE6-4AB2-B8CE-30FFCB762314}|Cursinho\\Cursinho.csproj|solutionrelative:cursinho\\controllers\\administradorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{11ED4C13-7DE6-4AB2-B8CE-30FFCB762314}|Cursinho\\Cursinho.csproj|d:\\repositorio\\api_cursinho\\cursinho\\cursinho\\cursinho\\model\\administrador\\administrador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{11ED4C13-7DE6-4AB2-B8CE-30FFCB762314}|Cursinho\\Cursinho.csproj|solutionrelative:cursinho\\model\\administrador\\administrador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -17,18 +25,40 @@
           "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AdministradorController.cs",
+              "DocumentMoniker": "D:\\repositorio\\Api_Cursinho\\Cursinho\\Cursinho\\Cursinho\\Controllers\\AdministradorController.cs",
+              "RelativeDocumentMoniker": "Cursinho\\Controllers\\AdministradorController.cs",
+              "ToolTip": "D:\\repositorio\\Api_Cursinho\\Cursinho\\Cursinho\\Cursinho\\Controllers\\AdministradorController.cs",
+              "RelativeToolTip": "Cursinho\\Controllers\\AdministradorController.cs",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAmwFkAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-23T20:44:44.09Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AdministradorRepository.cs",
+              "DocumentMoniker": "D:\\repositorio\\Api_Cursinho\\Cursinho\\Cursinho\\Cursinho\\Infraestrutura\\Administrador\\AdministradorRepository.cs",
+              "RelativeDocumentMoniker": "Cursinho\\Infraestrutura\\Administrador\\AdministradorRepository.cs",
+              "ToolTip": "D:\\repositorio\\Api_Cursinho\\Cursinho\\Cursinho\\Cursinho\\Infraestrutura\\Administrador\\AdministradorRepository.cs*",
+              "RelativeToolTip": "Cursinho\\Infraestrutura\\Administrador\\AdministradorRepository.cs*",
+              "ViewState": "AQIAAAEBAAAAAAAAAAA8wBsBAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-23T20:41:16.193Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Administrador.cs",
               "DocumentMoniker": "D:\\repositorio\\Api_Cursinho\\Cursinho\\Cursinho\\Cursinho\\Model\\Administrador\\Administrador.cs",
               "RelativeDocumentMoniker": "Cursinho\\Model\\Administrador\\Administrador.cs",
               "ToolTip": "D:\\repositorio\\Api_Cursinho\\Cursinho\\Cursinho\\Cursinho\\Model\\Administrador\\Administrador.cs",
               "RelativeToolTip": "Cursinho\\Model\\Administrador\\Administrador.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAkAAAAsAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-22T21:20:05.631Z",
               "EditorCaption": ""
