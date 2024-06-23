@@ -92,6 +92,16 @@ namespace Cursinho.Controllers
         {
             var resposta = await _repository.Update(administrador);
 
+            if (resposta.Mensagem == "Usuário não encontrado")
+            {
+                return BadRequest(resposta.Mensagem);
+            }
+
+            if (resposta.Mensagem == "Email já cadastrado")
+            {
+                return BadRequest(resposta.Mensagem);
+            }
+
             return Ok(resposta);
         }
     }
